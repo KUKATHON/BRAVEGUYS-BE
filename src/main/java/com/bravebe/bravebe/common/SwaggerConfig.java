@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 
 @OpenAPIDefinition(
         info = @io.swagger.v3.oas.annotations.info.Info(
-                title = "ST Dashboard API 명세서",
-                description = "동아ST 기업 프로젝트 API 명세서입니다.",
+                title = "SAVEUS API 명세서",
+                description = "세이버스 프로젝트 API 명세서입니다.",
                 version = "v1")
 )
 @RequiredArgsConstructor
