@@ -4,10 +4,12 @@ import com.bravebe.bravebe.domain.Post;
 import com.bravebe.bravebe.domain.QMember;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
+@Repository
 public class MainPageRepository extends QuerydslRepositorySupport {
 
     private final EntityManager entityManager;
