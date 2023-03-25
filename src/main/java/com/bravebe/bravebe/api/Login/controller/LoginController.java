@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/uesrs")
+@RequestMapping(value = "/login")
 @Tag(name = "Login Controller", description = "로그인 컨트롤러")
 public class LoginController {
 

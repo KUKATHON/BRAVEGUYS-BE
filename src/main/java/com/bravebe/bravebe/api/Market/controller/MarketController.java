@@ -43,7 +43,7 @@ public class MarketController {
     }
 
     @Operation(summary = "카테고리별 마켓 조회 API", description = "카테고리별 마켓 리스트를 조회한다.")
-    @GetMapping("/{category}/list")
+    @GetMapping("/categoryList")
     public ResponseEntity<BaseResponseBody<Optional<Market>>> categoryMarketList(
             @RequestParam String category
     ) {

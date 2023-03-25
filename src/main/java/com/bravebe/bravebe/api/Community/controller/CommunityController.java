@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/market")
+@RequestMapping(value = "/community")
 @Tag(name = "Community Controller", description = "게시판 컨트롤러")
 public class CommunityController {
 
@@ -29,10 +29,10 @@ public class CommunityController {
     /**
      * 전체 리스트 조회
      * GET
-     * @return CommunityDTO - list
+     * @return ResponseEntity - list<Post>
      */
     @Operation(summary = "게시판 조회 API", description = "전체 게시판 리스트를 조회한다.")
-    @GetMapping(value = "users/{userId}/list")
+    @GetMapping(value = "list")
     public ResponseEntity<BaseResponseBody<List<Post>>> postList() {
 
         List<Post> list = communityService.postList();
@@ -48,9 +48,13 @@ public class CommunityController {
 
     }
 
-    // 게시글 상세정보 조회
+    /**
+     * 게시글 상세정보 조회
+     * GET
+     * @return ResponseEntity - Post
+     */
     @Operation(summary = "상세정보 조회 API", description = "게시판 상세정보를 조회한다.")
-    @GetMapping("/users/{userId}/community")
+    @GetMapping("detail")
     public ResponseEntity<BaseResponseBody<Optional<Post>>> postView(
             @RequestParam Integer postId
     ) {
@@ -70,8 +74,9 @@ public class CommunityController {
 
     // 내 인증(게시글)만 조회
     @Operation(summary = "내 인증정보 조회 API", description = "내 인증정보를 조회한다.")
-    @GetMapping("/users/{userId}/own")
-    public ResponseEntity<BaseResponseBody<Optional<Post>>> ownView(Integer userId) {
+    @GetMapping("own")
+    public ResponseEntity<BaseResponseBody<Optional<Post>>> ownView(
+            @RequestParam Integer userId) {
 
         Optional<Post> result = Optional.of(communityService.postView(userId).get());
 

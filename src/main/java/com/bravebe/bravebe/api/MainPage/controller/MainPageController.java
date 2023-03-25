@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/uesrs")
+@RequestMapping(value = "/users")
 @Tag(name = "MainPage Controller", description = "메인페이지 컨트롤러")
 public class MainPageController {
 
