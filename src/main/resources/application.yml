@@ -12,42 +12,33 @@ spring:
   h2:
     console:
       enabled: true  # H2 Console? ???? ?? (H2 Console? H2 Database? UI? ????? ??)
-      path: /h2-console  # H2 Console? Path
+#      path: /h2-console  # H2 Console? Path
   # Database Setting Info (Database? H2? ???? ?? H2?? ?? ??)
-  datasource:
-    driver-class-name: org.h2.Driver  # Database? H2? ?????.
-    url: jdbc:h2://localhost:3306/brave?serverTimezone=UTC&characterEncoding=UTF-8  # H2 ?? ??
-    username: root  # H2 ?? ? ??? username ?? (??? ??? ??)
-    password: 1234 # H2 ?? ? ??? password ?? (??? ??? ??)
+#  datasource:
+#    driver-class-name: org.h2.Driver  # Database? H2? ?????.
+#    url: jdbc:h2://localhost:3306/brave?serverTimezone=UTC&characterEncoding=UTF-8  # H2 ?? ??
+#    username: root  # H2 ?? ? ??? username ?? (??? ??? ??)
+#    password: 1234 # H2 ?? ? ??? password ?? (??? ??? ??)
 
   # spring data jpa
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: false
     show-sql: true
     hibernate:
-      ddl-auto: update
-    generate-ddl: true
-
-
-  batch:
-    job:
-      enabled: false
-    jdbc:
-      initialize-schema: always
+      ddl-auto: create
 
 # swagger ??
-springdoc:
-  swagger-ui:
-    path: /api-docs
-    disable-swagger-default-url: true
-    display-request-duration: true
-    operations-sorter: alpha # ?? ??
-  default-consumes-media-type: application/json
-  default-produces-media-type: application/json
-  paths-to-match:
-    - /**
+#springdoc:
+#  swagger-ui:
+#    path: /api-docs
+#    disable-swagger-default-url: true
+#    display-request-duration: true
+#    operations-sorter: alpha # ?? ??
+#  default-consumes-media-type: application/json
+#  default-produces-media-type: application/json
+#  paths-to-match:
+#    - /**
 
-logging:
-  level:
-    sql: info
+#logging:
+#  level:
+#    sql: info
