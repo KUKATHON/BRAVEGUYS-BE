@@ -3,6 +3,7 @@ package com.bravebe.bravebe.api.Community.controller;
 import com.bravebe.bravebe.api.Community.service.CommunityService;
 import com.bravebe.bravebe.api.dto.CommunityDTO;
 import com.bravebe.bravebe.common.response.BaseResponseBody;
+import com.bravebe.bravebe.domain.Post;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
@@ -29,12 +30,12 @@ public class CommunityController {
      * @return CommunityDTO - list
      */
     @GetMapping(value = "users/{userId}/list")
-    public ResponseEntity<BaseResponseBody<List<CommunityDTO>>> postList() {
+    public ResponseEntity<BaseResponseBody<List<Post>>> postList() {
 
-        List<CommunityDTO> list = communityService.postList();
+        List<Post> list = communityService.postList();
 
-        return new ResponseEntity<BaseResponseBody<List<CommunityDTO>>>(
-                new BaseResponseBody<List<CommunityDTO>>(
+        return new ResponseEntity<BaseResponseBody<List<Post>>>(
+                new BaseResponseBody<List<Post>>(
                         HttpStatus.OK.value(),
                         "성공",
                         list
@@ -59,7 +60,7 @@ public class CommunityController {
     }
 
 
-    // 게시글 작성
+/*    // 게시글 작성
     @PostMapping("/users/community")
     public ResponseEntity<BaseResponseBody<String>> postWrite(
 
@@ -69,8 +70,7 @@ public class CommunityController {
 
 
 
-    }
+    }*/
 
-    // 게시글 수정
-    // 게시글 삭제
+
 }

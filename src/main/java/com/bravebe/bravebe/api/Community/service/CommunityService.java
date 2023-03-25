@@ -3,9 +3,10 @@ package com.bravebe.bravebe.api.Community.service;
 import com.bravebe.bravebe.api.Community.repository.CommunityRepository;
 import com.bravebe.bravebe.api.dto.CommunityDTO;
 import com.bravebe.bravebe.domain.Post;
+import com.querydsl.core.Tuple;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,14 +15,18 @@ public class CommunityService {
 
     private final CommunityRepository communityRepository;
 
+//    private final ModelMapper modelMapper;
+
     public CommunityService(CommunityRepository communityRepository) {
         this.communityRepository = communityRepository;
     }
 
     //전체 글 조회
-    public List<CommunityDTO> postList() {
+    public List<Post> postList() {
 
-        return communityRepository.selectInPost();
+        List<Post> list = communityRepository.findAll();
+
+        return list;
     }
 
     //특정 글 상세정보 조회 -> postId
@@ -43,9 +48,11 @@ public class CommunityService {
     }
 
     // select nickname
-    public String selectNickname(Integer id) {
+    public Optional<Post> selectNickname(Integer id) {
 
-        communityRepository.findById(id);
+        Optional<Post> nickname = communityRepository.findById(id);
+
+        return nickname;
 
     }
 
