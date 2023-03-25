@@ -15,6 +15,7 @@ public class Member {
     private String name;
     private String nickname;
     private String phoneNumber;
+    private String email;
     private LocalDateTime createTime;
     private LocalDateTime deleteTime;
 
