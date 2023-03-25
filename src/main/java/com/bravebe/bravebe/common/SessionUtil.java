@@ -1,6 +1,6 @@
 package com.bravebe.bravebe.common;
 
-import jakarta.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession;
 
 public class SessionUtil {
     private static final String LOGIN_ID = "loginID";

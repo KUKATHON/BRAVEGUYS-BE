@@ -1,9 +1,17 @@
 package com.bravebe.bravebe.domain;
 
-import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
+@Entity
+@Setter
+@Getter
+@NoArgsConstructor
 public class Report {
 
     @Id
@@ -15,13 +23,4 @@ public class Report {
     private String sendId;
     private String receiveId;
 
-    public Report(String postId, String title, String content, LocalDateTime createTime, LocalDateTime deleteTime, String sendId, String receiveId) {
-        this.postId = postId;
-        this.title = title;
-        this.content = content;
-        this.createTime = createTime;
-        this.deleteTime = null;
-        this.sendId = sendId;
-        this.receiveId = receiveId;
-    }
 }
