@@ -1,0 +1,42 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true # for config error
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://brave-be.cznmvedo4osi.ap-northeast-2.rds.amazonaws.com:3306/st
+    username: root
+    password: qwer1234
+  thymeleaf:
+    cache: false
+
+  # spring data jpa ??
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+
+
+  batch:
+    job:
+      enabled: false
+    jdbc:
+      initialize-schema: always
+
+# swagger ??
+springdoc:
+  swagger-ui:
+    path: /api-docs
+    disable-swagger-default-url: true
+    display-request-duration: true
+    operations-sorter: alpha # ?? ??
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  paths-to-match:
+    - /**
+
+logging:
+  level:
+    sql: info
