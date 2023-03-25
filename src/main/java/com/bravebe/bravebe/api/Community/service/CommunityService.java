@@ -24,13 +24,6 @@ public class CommunityService {
         return communityRepository.selectInPost();
     }
 
-
-    //글 작성 or 수정
-    public void write(Post post) throws IOException {
-
-        communityRepository.save(post);
-    }
-
     //특정 글 상세정보 조회 -> postId
     public Optional<Post> postView(Integer id) {
 
@@ -47,6 +40,13 @@ public class CommunityService {
     public void postDelete(Integer id) {
 
         communityRepository.deleteById(id);
+    }
+
+    // select nickname
+    public String selectNickname(Integer id) {
+
+        communityRepository.findById(id);
+
     }
 
 }

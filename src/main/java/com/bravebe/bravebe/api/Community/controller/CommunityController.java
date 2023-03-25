@@ -4,6 +4,7 @@ import com.bravebe.bravebe.api.Community.service.CommunityService;
 import com.bravebe.bravebe.api.dto.CommunityDTO;
 import com.bravebe.bravebe.common.response.BaseResponseBody;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,11 @@ public class CommunityController {
 
     private final CommunityService communityService;
 
+    /**
+     * 전체 리스트 조회
+     * GET
+     * @return CommunityDTO - list
+     */
     @GetMapping(value = "users/{userId}/list")
     public ResponseEntity<BaseResponseBody<List<CommunityDTO>>> postList() {
 
@@ -38,17 +44,8 @@ public class CommunityController {
 
     }
 
-    // 전체 게시글 조회
-    @GetMapping("/users/{userId}/list")
-    public String postList(Model model) {
-
-        model.addAttribute("list", communityService.postList());
-
-        return "postList";
-    }
-
     // 게시글 상세정보 조회
-    @GetMapping("/users/{userId}/community/{postId}")
+    @GetMapping("/users/{userId}/community")
     public String postView(Model model, Integer id) {
         model.addAttribute("post", communityService.postView(id).get()); //이건 postId
         return "postview";
@@ -63,10 +60,17 @@ public class CommunityController {
 
 
     // 게시글 작성
-    @PostMapping("/users/{userId}/community/{postId}")
-    public String postWrite() {
-        return "postwrite";
+    @PostMapping("/users/community")
+    public ResponseEntity<BaseResponseBody<String>> postWrite(
+
+    ) {
+
+        String nickname = communityService.selectNickname(userId);
+
+
+
     }
+
     // 게시글 수정
     // 게시글 삭제
 }
