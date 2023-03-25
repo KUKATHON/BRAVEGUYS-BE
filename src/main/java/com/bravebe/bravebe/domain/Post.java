@@ -13,6 +13,7 @@ public class Post {
     private String userId;
     private String category;
     private String title;
+    private String nickname;
     private String content;
     private String image;
     private LocalDateTime createTime;

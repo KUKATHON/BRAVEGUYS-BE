@@ -20,12 +20,12 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/uesrs")
-@Tag(name = "Login Controller", description = "로그인 컨트롤러")
+@Tag(name = "MainPage Controller", description = "메인페이지 컨트롤러")
 public class MainPageController {
 
     private final MainPageService mainPageService;
 
-    @Operation(summary = "[게시판] 게시물 리스트 API", description = "게시물 리스트")
+    @Operation(summary = "메인페이지 - 북극곰 단계 보내주기 API", description = "북극곰 개수 보내주기")
     @GetMapping("/list")
     @LoginCheck
     public ResponseEntity<BaseResponseBody<Long>> sendMainPageNumber (HttpSession session) {
