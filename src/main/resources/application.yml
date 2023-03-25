@@ -1,15 +1,26 @@
-spring:
-  main:
-    allow-bean-definition-overriding: true # for config error
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://brave-be.cznmvedo4osi.ap-northeast-2.rds.amazonaws.com:3306/st
-    username: root
-    password: qwer1234
-  thymeleaf:
-    cache: false
+#spring:
+#  main:
+#    allow-bean-definition-overriding: true # for config error
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/brave?serverTimezone=UTC&characterEncoding=UTF-8
+#    username: root
+#    password: qwer1234
 
-  # spring data jpa ??
+spring:
+  # H2 Setting Info (H2 Console? ???? ?? ???? ??)
+  h2:
+    console:
+      enabled: true  # H2 Console? ???? ?? (H2 Console? H2 Database? UI? ????? ??)
+      path: /h2-console  # H2 Console? Path
+  # Database Setting Info (Database? H2? ???? ?? H2?? ?? ??)
+  datasource:
+    driver-class-name: org.h2.Driver  # Database? H2? ?????.
+    url: jdbc:h2://localhost:3306/brave?serverTimezone=UTC&characterEncoding=UTF-8  # H2 ?? ??
+    username: root  # H2 ?? ? ??? username ?? (??? ??? ??)
+    password: 1234 # H2 ?? ? ??? password ?? (??? ??? ??)
+
+  # spring data jpa
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: false

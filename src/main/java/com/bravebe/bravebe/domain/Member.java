@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class Member {
     @Id
     private String userid;

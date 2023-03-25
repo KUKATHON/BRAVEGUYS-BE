@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class Reply {
 
     @Id
