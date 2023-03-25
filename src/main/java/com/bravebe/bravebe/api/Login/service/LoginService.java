@@ -26,7 +26,7 @@ public class LoginService {
             // 비밀번호 일치
             if (member.getPwd().equals(loginDTO.getPwd())) {
                 // entity -> dto 변환 후 리턴
-                return member.getId();
+                return member.getUserid();
             }else { // 비밀번호 불일치
                 return "WRONG_PWD";
             }

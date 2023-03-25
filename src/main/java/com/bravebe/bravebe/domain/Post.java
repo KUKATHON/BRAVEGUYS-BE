@@ -1,20 +1,17 @@
 package com.bravebe.bravebe.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
 public class Post {
     @Id
     private String postId;
+    private String userId;
     private String category;
     private String title;
     private String content;
@@ -22,9 +19,5 @@ public class Post {
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
     private int likeNum;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
-    private Member member;
 
 }
