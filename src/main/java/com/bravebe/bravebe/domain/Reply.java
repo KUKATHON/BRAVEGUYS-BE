@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,10 +15,16 @@ import java.time.LocalDateTime;
 public class Reply {
 
     @Id
-    private String postId;
+    private String replyId;
     private String content;
     private LocalDateTime createTime;
     private LocalDateTime deleteTime;
-    private String id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id")
+    private Member member;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "postId")
+    private Post post;
 
 }

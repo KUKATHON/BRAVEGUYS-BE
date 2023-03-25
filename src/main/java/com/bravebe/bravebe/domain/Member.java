@@ -22,13 +22,4 @@ public class Member {
     private LocalDateTime createTime;
     private LocalDateTime deleteTime;
 
-    @Builder
-    public Member(String id, String pwd, String name, String phoneNumber) {
-        this.id = id;
-        this.pwd = pwd;
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.createTime = LocalDateTime.now();
-        this.deleteTime = null;
-    }
 }

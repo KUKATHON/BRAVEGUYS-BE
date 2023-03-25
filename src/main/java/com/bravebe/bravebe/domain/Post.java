@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -24,18 +23,8 @@ public class Post {
     private LocalDateTime updateTime;
     private int likeNum;
 
-    private String id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id")
+    private Member member;
 
-    @Builder
-    public Post(String postId, String category, String title, String content, String image, LocalDateTime createTime, LocalDateTime updateTime, int likeNum, String id) {
-        this.postId = postId;
-        this.category = category;
-        this.title = title;
-        this.content = content;
-        this.image = image;
-        this.createTime = createTime;
-        this.updateTime = null;
-        this.likeNum = 0;
-        this.id = id;
-    }
 }
