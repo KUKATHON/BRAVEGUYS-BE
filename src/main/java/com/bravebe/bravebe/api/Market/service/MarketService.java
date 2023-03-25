@@ -23,6 +23,6 @@ public class MarketService {
 
     //카테고리별 마켓 조회
     public Optional<Market> categoryMarketList(String category) {
-        return marketRepository.findbyCategory(category);
+        return marketRepository.findByCategory(category);
     }
 }

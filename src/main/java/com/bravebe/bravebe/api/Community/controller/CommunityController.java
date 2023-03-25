@@ -3,6 +3,7 @@ package com.bravebe.bravebe.api.Community.controller;
 import com.bravebe.bravebe.api.Community.service.CommunityService;
 import com.bravebe.bravebe.api.dto.CommunityDTO;
 import com.bravebe.bravebe.common.response.BaseResponseBody;
+import com.bravebe.bravebe.domain.Market;
 import com.bravebe.bravebe.domain.Post;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -56,10 +57,10 @@ public class CommunityController {
     @Operation(summary = "상세정보 조회 API", description = "게시판 상세정보를 조회한다.")
     @GetMapping("detail")
     public ResponseEntity<BaseResponseBody<Optional<Post>>> postView(
-            @RequestParam Integer postId
+            @RequestParam String postId
     ) {
 
-        Optional<Post> result = Optional.of(communityService.postView(postId).get());
+        Optional<Post> result = communityService.postView(postId);
 
         return new ResponseEntity<BaseResponseBody<Optional<Post>>>(
                 new BaseResponseBody<Optional<Post>>(
@@ -72,23 +73,26 @@ public class CommunityController {
 
     }
 
-    // 내 인증(게시글)만 조회
-    @Operation(summary = "내 인증정보 조회 API", description = "내 인증정보를 조회한다.")
+    /**
+     * 내 인증(게시글)만 조회
+     * GET
+     * @return ResponseEntity - list<Post>
+     */
+    @Operation(summary = "내 게시글 조회 API", description = "내 게시글을 조회한다.")
     @GetMapping("own")
-    public ResponseEntity<BaseResponseBody<Optional<Post>>> ownView(
-            @RequestParam Integer userId) {
+    public ResponseEntity<BaseResponseBody<List<Post>>> ownView(
+            @RequestParam String userId) {
 
-        Optional<Post> result = Optional.of(communityService.postView(userId).get());
+        List<Post> list = communityService.ownList(userId);
 
-        return new ResponseEntity<BaseResponseBody<Optional<Post>>>(
-                new BaseResponseBody<Optional<Post>>(
+        return new ResponseEntity<BaseResponseBody<List<Post>>>(
+                new BaseResponseBody<List<Post>>(
                         HttpStatus.OK.value(),
                         "성공",
-                        result
+                        list
                 ),
                 HttpStatus.OK
         );
-
     }
 
 }

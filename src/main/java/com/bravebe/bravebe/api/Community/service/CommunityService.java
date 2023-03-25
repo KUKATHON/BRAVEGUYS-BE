@@ -30,15 +30,15 @@ public class CommunityService {
     }
 
     //특정 글 상세정보 조회 -> postId
-    public Optional<Post> postView(Integer id) {
+    public Optional<Post> postView(String id) {
 
-        return communityRepository.findById(id);
+        return communityRepository.findPostById(id);
     }
 
     //내 인증(게시글)만 조회 -> userId
-    public Optional<Post> ownList(Integer id) {
+    public List<Post> ownList(String id) {
 
-        return communityRepository.findById(id);
+        return communityRepository.findMineById(id);
     }
 
     //글 삭제

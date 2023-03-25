@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface MarketRepository extends JpaRepository<Market, String> {
 
     @Query("select m from Market m where m.category = :category")
-    Optional<Market> findbyCategory(String category);
+    Optional<Market> findByCategory(String category);
 
 }
