@@ -1,6 +1,7 @@
 package com.bravebe.bravebe.api.Community.service;
 
 import com.bravebe.bravebe.api.Community.repository.CommunityRepository;
+import com.bravebe.bravebe.api.dto.CommunityDTO;
 import com.bravebe.bravebe.domain.Post;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +19,9 @@ public class CommunityService {
     }
 
     //전체 글 조회
-    public List<Post> postList() {
+    public List<CommunityDTO> postList() {
 
-        return communityRepository.findAll();
+        return communityRepository.selectInPost();
     }
 
 

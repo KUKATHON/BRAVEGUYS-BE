@@ -1,20 +1,41 @@
 package com.bravebe.bravebe.api.Community.controller;
 
 import com.bravebe.bravebe.api.Community.service.CommunityService;
+import com.bravebe.bravebe.api.dto.CommunityDTO;
+import com.bravebe.bravebe.common.response.BaseResponseBody;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
+@RestController
+@RequiredArgsConstructor
 public class CommunityController {
 
     private final CommunityService communityService;
 
+    @GetMapping(value = "users/{userId}/list")
+    public ResponseEntity<BaseResponseBody<List<CommunityDTO>>> postList() {
 
-    public CommunityController(CommunityService communityService) {
-        this.communityService = communityService;
+        List<CommunityDTO> list = communityService.postList();
+
+        return new ResponseEntity<BaseResponseBody<List<CommunityDTO>>>(
+                new BaseResponseBody<List<CommunityDTO>>(
+                        HttpStatus.OK.value(),
+                        "성공",
+                        list
+                ),
+                HttpStatus.OK
+        );
+
     }
 
     // 전체 게시글 조회

@@ -13,6 +13,7 @@ public class Member {
     private String userid;
     private String pwd;
     private String name;
+    private String nickname;
     private String phoneNumber;
     private LocalDateTime createTime;
     private LocalDateTime deleteTime;
