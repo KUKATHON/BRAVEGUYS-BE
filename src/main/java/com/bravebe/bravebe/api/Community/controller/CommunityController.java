@@ -5,7 +5,6 @@ import com.bravebe.bravebe.api.dto.CommunityDTO;
 import com.bravebe.bravebe.common.response.BaseResponseBody;
 import com.bravebe.bravebe.domain.Post;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -58,19 +57,5 @@ public class CommunityController {
         model.addAttribute("post", communityService.postView(id).get()); //이건 userId
         return "ownview";
     }
-
-
-/*    // 게시글 작성
-    @PostMapping("/users/community")
-    public ResponseEntity<BaseResponseBody<String>> postWrite(
-
-    ) {
-
-        String nickname = communityService.selectNickname(userId);
-
-
-
-    }*/
-
 
 }
