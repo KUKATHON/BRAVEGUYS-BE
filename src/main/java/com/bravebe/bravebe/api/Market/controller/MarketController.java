@@ -6,6 +6,7 @@ import com.bravebe.bravebe.domain.Market;
 import com.bravebe.bravebe.domain.Post;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,21 +14,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
+@RequiredArgsConstructor
 @RequestMapping(value = "/market")
 @Tag(name = "Market Controller", description = "마켓 컨트롤러")
 public class MarketController {
     private final MarketService marketService;
 
-    public MarketController(MarketService marketService) {
-        this.marketService = marketService;
-    }
-
-    @Operation(summary = "[테스트용] 마켓 조회 API", description = "마켓 리스트를 조회한다.")
+    @Operation(summary = "마켓 조회 API", description = "마켓 리스트를 조회한다.")
     @GetMapping("/list")
     public ResponseEntity<BaseResponseBody<List<Market>>> marketList() {
 
@@ -43,7 +42,7 @@ public class MarketController {
         );
     }
 
-    @Operation(summary = "[테스트용] 카테고리별 마켓 조회 API", description = "카테고리별 마켓 리스트를 조회한다.")
+    @Operation(summary = "카테고리별 마켓 조회 API", description = "카테고리별 마켓 리스트를 조회한다.")
     @GetMapping("/{category}/list")
     public ResponseEntity<BaseResponseBody<Optional<Market>>> categoryMarketList(
             @RequestParam String category

@@ -4,21 +4,24 @@ import com.bravebe.bravebe.api.Community.service.CommunityService;
 import com.bravebe.bravebe.api.dto.CommunityDTO;
 import com.bravebe.bravebe.common.response.BaseResponseBody;
 import com.bravebe.bravebe.domain.Post;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping(value = "/market")
+@Tag(name = "Community Controller", description = "게시판 컨트롤러")
 public class CommunityController {
 
     private final CommunityService communityService;
@@ -28,6 +31,7 @@ public class CommunityController {
      * GET
      * @return CommunityDTO - list
      */
+    @Operation(summary = "게시판 조회 API", description = "전체 게시판 리스트를 조회한다.")
     @GetMapping(value = "users/{userId}/list")
     public ResponseEntity<BaseResponseBody<List<Post>>> postList() {
 
@@ -45,17 +49,41 @@ public class CommunityController {
     }
 
     // 게시글 상세정보 조회
+    @Operation(summary = "상세정보 조회 API", description = "게시판 상세정보를 조회한다.")
     @GetMapping("/users/{userId}/community")
-    public String postView(Model model, Integer id) {
-        model.addAttribute("post", communityService.postView(id).get()); //이건 postId
-        return "postview";
+    public ResponseEntity<BaseResponseBody<Optional<Post>>> postView(
+            @RequestParam Integer postId
+    ) {
+
+        Optional<Post> result = Optional.of(communityService.postView(postId).get());
+
+        return new ResponseEntity<BaseResponseBody<Optional<Post>>>(
+                new BaseResponseBody<Optional<Post>>(
+                        HttpStatus.OK.value(),
+                        "성공",
+                        result
+                ),
+                HttpStatus.OK
+        );
+
     }
 
     // 내 인증(게시글)만 조회
+    @Operation(summary = "내 인증정보 조회 API", description = "내 인증정보를 조회한다.")
     @GetMapping("/users/{userId}/own")
-    public String ownView(Model model, Integer id) {
-        model.addAttribute("post", communityService.postView(id).get()); //이건 userId
-        return "ownview";
+    public ResponseEntity<BaseResponseBody<Optional<Post>>> ownView(Integer userId) {
+
+        Optional<Post> result = Optional.of(communityService.postView(userId).get());
+
+        return new ResponseEntity<BaseResponseBody<Optional<Post>>>(
+                new BaseResponseBody<Optional<Post>>(
+                        HttpStatus.OK.value(),
+                        "성공",
+                        result
+                ),
+                HttpStatus.OK
+        );
+
     }
 
 }
