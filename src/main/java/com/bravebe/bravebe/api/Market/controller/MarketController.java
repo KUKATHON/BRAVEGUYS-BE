@@ -38,11 +38,11 @@ public class MarketController {
 
     @Operation(summary = "[테스트용] 카테고리별 마켓 조회 API", description = "카테고리별 마켓 리스트를 조회한다.")
     @GetMapping("/{category}/list")
-    public String categoryMarketList(Model model) {
+    public Model categoryMarketList(Model model) {
 
         model.addAttribute("categoryList", marketService.categoryMarketList((String) model.getAttribute("category")));
 
-        return "categoryMarketList";
+        return model;
     }
 
 }
